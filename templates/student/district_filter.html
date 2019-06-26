@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+
+	{% for i in district %}
+		<p> name:{{ i.name }} </p>
+		<p> area:{{i.area  }}</p>
+		<p> population:{{ i.population }}</p>
+		<p> division: {{i.division }}</p>
+
+		<hr/>
+	{% endfor %}
+
+
+</body>
+</html>
