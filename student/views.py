@@ -1,12 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import StudentInfo,DistrictInfo,UpazilaInfo,ShopInfo
 
 # Create your views here.
 
-def shop_info(request):
-	all_shop = ShopInfo.objects.all()
-	context = {'shop':all_shop}
-	return render(request,'student/shop_list.html',context)
+
 
 def student_list(request):
 	all_student = StudentInfo.objects.all()
@@ -26,6 +23,27 @@ def upazila_info(request):
 	return render(request,'student/upazila_list.html',context)
 
 
+def shop_info(request):
+	all_shop = ShopInfo.objects.all()
+	context = {'shop':all_shop}
+	return render(request,'student/shop_list.html',context)
+
+def shop_filter(request,ShopName):
+	shop_filt = ShopInfo.objects.filter(rent=ShopName)
+	context = {'shop':shop_filt}
+	return render(request,'student/shop_list.html',context)
+
+
+def create(request):
+	print(request.POST)
+	shopname = request.GET['shopname']
+	rent = request.GET['rent']
+	paidrent = request.GET['paidrent']
+	comments = request.GET['comments']
+
+	msi = ShopInfo(shopname=shopname, rent=rent, paidrent=paidrent, comments=comments)
+	msi.save()
+	return redirect('/')
 
 
 
