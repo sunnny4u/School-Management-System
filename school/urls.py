@@ -16,19 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
-from .views import home,information, check_number, blog_func, con_func
+from .views import home,information, check_number,blog_func, con_func
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home',home),
+    #path('',index),
     path('info/<district>',information),
     path('even-odd/<int:number>',check_number),
     path('blog',blog_func),
     path('contact/<name>',con_func),
     path('student/', include('student.urls') )
 ]
-
-
-

@@ -1,14 +1,18 @@
+
 from django.shortcuts import render,redirect,get_object_or_404
+
 from .models import StudentInfo,DistrictInfo,UpazilaInfo,ShopInfo
 from .forms import Listform
 from django.contrib import messages
 
 # Create your views here.
 
+
 def shop_info(request):
 	all_shop = ShopInfo.objects.all()
 	context = {'shop':all_shop}
 	return render(request, 'student/shop_list.html',context)
+
 
 def student_list(request):
 	all_student = StudentInfo.objects.all()
@@ -26,6 +30,32 @@ def upazila_info(request):
 	all_upazila = UpazilaInfo.objects.all()
 	context = {'upazila':all_upazila}
 	return render(request,'student/upazila_list.html',context)
+
+
+
+def shop_info(request):
+	all_shop = ShopInfo.objects.all()
+	context = {'shop':all_shop}
+	return render(request,'student/shop_list.html',context)
+
+def shop_filter(request,ShopName):
+	shop_filt = ShopInfo.objects.filter(rent=ShopName)
+	context = {'shop':shop_filt}
+	return render(request,'student/shop_list.html',context)
+
+
+def create(request):
+	print(request.POST)
+	shopname = request.GET['shopname']
+	rent = request.GET['rent']
+	paidrent = request.GET['paidrent']
+	comments = request.GET['comments']
+
+	msi = ShopInfo(shopname=shopname, rent=rent, paidrent=paidrent, comments=comments)
+	msi.save()
+	return redirect('/')
+
+
 
 
 def district_filter(request,name):

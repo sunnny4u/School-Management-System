@@ -15,9 +15,8 @@ def check_number(request,number):
 		return HttpResponse('%s is odd' % number)
 
 def blog_func(request):
-	return render(request, 'index.html', {'name':'shamim'})	
+	return render(request, 'index.html', {'name':'shamim'})
 
 def con_func(request,name):
 
 	return render(request, 'contact.html', {'name':name, 'phone':['01778548587','01515605027','018'], "count":range(1,50)})
-
