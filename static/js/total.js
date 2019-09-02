@@ -4,7 +4,7 @@ var paid_rent,rent;
 
 function add_total(){
 	var table = document.getElementById('shop_table');
-	n = int(table.rows.length);
+	n = table.length();
 
 	for(var i = 0;i < n;i++){
 		rent = int(table.rows[i].cells[2].innerHTML);
